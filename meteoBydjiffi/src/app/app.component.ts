@@ -1,21 +1,34 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { HomePage } from '../pages/home/home.ts';
+import { MenuController } from 'ionic-angular';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+    @ViewChild(Nav) nav: Nav;
   rootPage = HomePage;
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform, public menuCtrl: MenuController) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
   }
+  openMenu() {
+     this.menuCtrl.open();
+   }
+  goHome(){
+    this.nav.push(HomePage);
+  }
+  closeMenu() {
+  this.menuCtrl.close();
+}
+
+toggleMenu() {
+  this.menuCtrl.toggle();
+}
 }

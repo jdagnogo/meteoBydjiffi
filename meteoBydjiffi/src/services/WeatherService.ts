@@ -16,4 +16,8 @@ export class WeatherService {
     return this.http.get(`http://api.openweathermap.org/data/2.5/${url}${city}&mode=json&units=metric&APPID=${this._appid}`)
       .map(hours => hours.json());
   }
+
+  public getBordeauxWeather(url: string){
+    return this.getWeather(url,"Bordeaux");
+  }
 }
